@@ -1,0 +1,33 @@
+# ========================================================
+# ScreenLens AI - Git Ignore Configuration
+# ========================================================
+
+# Compiled binaries and installers (Exceeds GitHub 100MB limit - release via GitHub Releases)
+dist/
+build/
+ScreenLens_AI_Installer/*.exe
+*.spec
+
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Local user history & database
+screenlens.db
+screenshots/
+video/
+
+# Scratch & temporary logs
+*.log
+test_*.png
+test_*.py
+
+# Environments
+venv/
+env/
+.env
+.gemini/
+.idea/
+.vscode/

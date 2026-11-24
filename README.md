@@ -28,32 +28,34 @@
   - Powered by Ollama Vision AI for high-accuracy Sinhala Unicode text recognition and contextual translations.
 - 🧠 **Interactive AI Streaming Assistant:**
   - Always-on-top draggable assistant window with real-time response streaming and persistent SQLite chat history.
-- 📦 **1-Click Standalone Windows Installer:**
-  - Pre-compiled standalone setup package (`ScreenLens_AI_Setup.exe`) with desktop shortcuts and clean Windows Uninstaller registration.
+- 📦 **1-Click Standalone Windows Setup Installer:**
+  - Pre-compiled standalone setup package (`ScreenLens_AI_Setup.exe`) with desktop shortcuts, system specs verification, and clean Windows Uninstaller registration.
 
 ---
 
-## 🛠️ Architecture & Tech Stack
+## 📁 Project Architecture & Components
 
-| Component | Technology | Description |
-| :--- | :--- | :--- |
-| **Frontend UI** | **PyQt6** | Modern dark theme, frameless drag-and-resize window, multi-monitor overlays. |
-| **Local OCR** | **EasyOCR & PyTorch** | Fast, offline optical character recognition. |
-| **Vision AI** | **Ollama (`gemma4:31b-cloud`)** | Multi-modal local LLM integration for complex Sinhala & visual reasoning. |
-| **Database** | **SQLite3** | Local encrypted history for screenshots and chat conversations. |
-| **Screen Capture** | **Qt Native Compositor** | Sub-5ms hardware capture with 1:1 screen fidelity. |
-| **Packaging** | **PyInstaller** | Pre-decompressed directory build with custom setup installer. |
+The codebase consists of modular OOP Python scripts:
+
+* **`app.py`**: The main orchestrator and floating frameless always-on-top assistant window. Handles boundary clamping, resizing, and threaded background workers.
+* **`overlay.py`**: Full-screen Circle-to-Search selection overlay with multi-monitor support, native Qt hardware frame-buffer capture, and contextual pill menu.
+* **`ai_worker.py`**: Thread-safe worker inheriting from `QThread` streaming responses using Ollama client with multimodal image attachments.
+* **`ocr_engine.py`**: EasyOCR wrapper with regex parsers for code, URLs, and emails, plus Ollama-based **AI Sinhala OCR**.
+* **`translator.py`**: English ↔ Sinhala translator with automatic script detection and keyless fallback.
+* **`history.py`**: Persistent SQLite database manager for chat history and screenshot metadata.
+* **`tray.py`**: System tray icon with quick capture, hide/show, history reset, and exit options.
+* **`utils.py`**: High-DPI configurations, operational constants, and custom dark stylesheets.
 
 ---
 
 ## 🚀 Getting Started
 
 ### Option 1: Standalone Installer (Recommended for End-Users)
-1. Download `ScreenLens_AI_Setup.exe` from the [Releases](https://github.com/) page.
-2. Run the installer and follow the setup wizard.
+1. Run `ScreenLens_AI_Setup.exe` from the `ScreenLens_AI_Installer/` folder or download it from Releases.
+2. Follow the setup wizard to install into your programs folder.
 3. Press `Ctrl + Shift + S` from any screen to begin capturing!
 
-*(Optional for AI Vision)*: Install [Ollama](https://ollama.com) and pull the model:
+*(Optional for AI Vision)*: Run `setup_ollama_ai.bat` to install Ollama and pull the Gemma model:
 ```bash
 ollama run gemma4:31b-cloud
 ```
@@ -69,8 +71,8 @@ ollama run gemma4:31b-cloud
 #### Installation
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/ScreenLens-AI.git
-cd ScreenLens-AI
+git clone https://github.com/pasinduayesh/ai-lens-app-for-computers.git
+cd ai-lens-app-for-computers
 
 # 2. Install dependencies
 pip install -r requirements.txt
@@ -92,4 +94,4 @@ python app.py
 ---
 
 ## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
