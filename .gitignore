@@ -2,10 +2,9 @@
 # ScreenLens AI - Git Ignore Configuration
 # ========================================================
 
-# Compiled binaries and installers (Exceeds GitHub 100MB limit - release via GitHub Releases)
+# Compiled binaries and build cache
 dist/
 build/
-ScreenLens_AI_Installer/*.exe
 *.spec
 
 # Python bytecode & cache
